@@ -1,0 +1,6 @@
+# Modules
+":floppy_disk: cur-report":
+- modules/cur-report/**/*
+
+":floppy_disk: rds-reserved-instance":
+- modules/rds-reserved-instance/**/*
