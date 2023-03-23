@@ -36,9 +36,9 @@ resource "aws_cur_report_definition" "this" {
   refresh_closed_reports = var.data_refresh_enabled
 
   ## Delivery Destination
-  s3_region = coalesce(var.delivery_s3_region, local.default_region)
-  s3_bucket = var.delivery_s3_bucket
-  s3_prefix = var.delivery_s3_key_prefix
+  s3_bucket = var.delivery_s3_bucket.name
+  s3_prefix = var.delivery_s3_bucket.key_prefix
+  s3_region = coalesce(var.delivery_s3_bucket.region, local.default_region)
 
   ## Content
   format                     = local.format[var.compression_format]
