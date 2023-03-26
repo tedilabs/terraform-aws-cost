@@ -64,6 +64,11 @@ module "cur_report" {
 
 - [CUR Report](./examples/cur-report)
 
+### AWS RDS (Relational Database Service)
+
+- [RDS Reserved Instance: Aurora MySQL for 1 Year with no upfront](./examples/rds-ri-aurora-mysql-1y-no-upfront)
+- [RDS Reserved Instance: PostgreSQL for 3 Year with all upfront](./examples/rds-ri-postgresql-3y-all-upfront)
+
 
 ## Self Promotion
 
