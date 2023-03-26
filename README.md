@@ -34,6 +34,26 @@ module "cur_report" {
   version = "~> 0.1.0"
 
   name        = "example-report"
+
+
+  ## Delivery Options
+  time_granularity     = "HOURLY"
+  versioning_strategy  = "OVERWRITE_REPORT"
+  data_refresh_enabled = true
+
+
+  ## Delivery Destination
+  delivery_s3_bucket = {
+    name       = "hello-my-bucket"
+    key_prefix = "test/"
+    region     = "us-east-1"
+  }
+
+
+  ## Content
+  compression_format         = "GZIP"
+  additional_schema_elements = ["RESOURCES"]
+  additional_artifacts       = ["REDSHIFT", "QUICKSIGHT"]
 }
 ```
 
@@ -42,7 +62,7 @@ module "cur_report" {
 
 ### AWS CUR (Cost and Usage Report)
 
-- Comming soon
+- [CUR Report](./examples/cur-report)
 
 
 ## Self Promotion
