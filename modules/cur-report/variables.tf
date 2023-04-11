@@ -36,7 +36,7 @@ variable "data_refresh_enabled" {
 
 variable "delivery_s3_bucket" {
   description = <<EOF
-  (Required) The configuration for offering of the reservation. `offering` as defined below.
+  (Required) The configuration of the S3 bucket where AWS deliver your reports. `delivery_s3_bucket` as defined below.
     (Required) `name` - The name of the S3 bucket where AWS deliver the report.
     (Optional) `key_prefix` -The key prefix that AWS adds to the report name when AWS delivers the report. The key prefix can't include spaces.
     (Optional) `region` - The region of the S3 bucket where AWS deliver the report. Defaults to current region.
