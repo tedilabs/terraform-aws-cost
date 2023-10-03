@@ -9,14 +9,14 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.30 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 4.34.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.19.0 |
 
 ## Modules
 
@@ -33,7 +33,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#input\_delivery\_s3\_bucket) | (Required) The configuration of the S3 bucket where AWS deliver your reports. `delivery_s3_bucket` as defined below.<br>    (Required) `name` - The name of the S3 bucket where AWS deliver the report.<br>    (Optional) `key_prefix` -The key prefix that AWS adds to the report name when AWS delivers the report. The key prefix can't include spaces.<br>    (Optional) `region` - The region of the S3 bucket where AWS deliver the report. Defaults to current region. | <pre>object({<br>    name       = string<br>    key_prefix = optional(string)<br>    region     = optional(string)<br>  })</pre> | n/a | yes |
+| <a name="input_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#input\_delivery\_s3\_bucket) | (Required) The configuration of the S3 bucket where AWS deliver your reports. `delivery_s3_bucket` as defined below.<br>    (Required) `name` - The name of the S3 bucket where AWS deliver the report.<br>    (Optional) `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report. The key prefix can't include spaces.<br>    (Optional) `region` - The region of the S3 bucket where AWS deliver the report. Defaults to current region. | <pre>object({<br>    name       = string<br>    key_prefix = optional(string)<br>    region     = optional(string)<br>  })</pre> | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the report that you want to create. The name must be unique, is case sensitive, and can't include spaces. Limited to 256 characters. | `string` | n/a | yes |
 | <a name="input_time_granularity"></a> [time\_granularity](#input\_time\_granularity) | (Required) The frequency on which report data are measured and displayed. Valid values are `HOURLY`, `DAILY`, `MONTHLY`. | `string` | n/a | yes |
 | <a name="input_additional_artifacts"></a> [additional\_artifacts](#input\_additional\_artifacts) | (Optional) A set of additional artifacts. Valid values are `REDSHIFT`, `QUICKSIGHT`, `ATHENA`. When `ATHENA` exists within `additional_artifacts`, no other artifact type can be declared and `versioning_strategy` must be `OVERWRITE_REPORT`. | `set(string)` | `[]` | no |
