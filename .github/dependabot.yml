@@ -1,6 +1,13 @@
 version: 2
 updates:
-- package-ecosystem: "github-actions"
-  directory: "/"
+- package-ecosystem: github-actions
+  directory: /
   schedule:
-    interval: "daily"
+    interval: daily
+
+- package-ecosystem: terraform
+  directories:
+  - /modules/cur-report
+  - /modules/rds-reserved-instance
+  schedule:
+    interval: weekly
