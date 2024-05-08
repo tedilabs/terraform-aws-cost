@@ -9,14 +9,14 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.30 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.43 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.19.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.48.0 |
 
 ## Modules
 
@@ -37,10 +37,10 @@ No modules.
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the report that you want to create. The name must be unique, is case sensitive, and can't include spaces. Limited to 256 characters. | `string` | n/a | yes |
 | <a name="input_time_granularity"></a> [time\_granularity](#input\_time\_granularity) | (Required) The frequency on which report data are measured and displayed. Valid values are `HOURLY`, `DAILY`, `MONTHLY`. | `string` | n/a | yes |
 | <a name="input_additional_artifacts"></a> [additional\_artifacts](#input\_additional\_artifacts) | (Optional) A set of additional artifacts. Valid values are `REDSHIFT`, `QUICKSIGHT`, `ATHENA`. When `ATHENA` exists within `additional_artifacts`, no other artifact type can be declared and `versioning_strategy` must be `OVERWRITE_REPORT`. | `set(string)` | `[]` | no |
-| <a name="input_additional_schema_elements"></a> [additional\_schema\_elements](#input\_additional\_schema\_elements) | (Optional) A set of schema elements. Valid values are `RESOURCES`. | `set(string)` | `[]` | no |
+| <a name="input_additional_schema_elements"></a> [additional\_schema\_elements](#input\_additional\_schema\_elements) | (Optional) A set of schema elements. Valid values are `RESOURCES`, `SPLIT_COST_ALLOCATION_DATA`. | `set(string)` | `[]` | no |
 | <a name="input_compression_format"></a> [compression\_format](#input\_compression\_format) | (Optional) The compression format that AWS uses for the report. Valid values are `ZIP`, `GZIP`, `PARQUET`. | `string` | `"GZIP"` | no |
 | <a name="input_data_refresh_enabled"></a> [data\_refresh\_enabled](#input\_data\_refresh\_enabled) | (Optional) Whether you want Amazon Web Services to update your reports after they have been finalized if Amazon Web Services detects charges related to previous months. These charges can include refunds, credits, or support fees. Defaults to `true`. | `bool` | `true` | no |
-| <a name="input_versioning_strategy"></a> [versioning\_strategy](#input\_versioning\_strategy) | (Optional) Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are `CREATE_NEW_REPORT`, `OVERWRITE_REPORT`. | `string` | `"OVERWRITE_REPORT"` | no |
+| <a name="input_versioning_strategy"></a> [versioning\_strategy](#input\_versioning\_strategy) | (Optional) Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are `CREATE_NEW_REPORT`, `OVERWRITE_REPORT`. Defaults to `OVERWRITE_REPORT`. | `string` | `"OVERWRITE_REPORT"` | no |
 
 ## Outputs
 

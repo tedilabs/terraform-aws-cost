@@ -16,7 +16,7 @@ variable "time_granularity" {
 }
 
 variable "versioning_strategy" {
-  description = "(Optional) Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are `CREATE_NEW_REPORT`, `OVERWRITE_REPORT`."
+  description = "(Optional) Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are `CREATE_NEW_REPORT`, `OVERWRITE_REPORT`. Defaults to `OVERWRITE_REPORT`."
   type        = string
   default     = "OVERWRITE_REPORT"
   nullable    = false
@@ -62,7 +62,7 @@ variable "compression_format" {
 }
 
 variable "additional_schema_elements" {
-  description = "(Optional) A set of schema elements. Valid values are `RESOURCES`."
+  description = "(Optional) A set of schema elements. Valid values are `RESOURCES`, `SPLIT_COST_ALLOCATION_DATA`."
   type        = set(string)
   default     = []
   nullable    = false
@@ -70,9 +70,9 @@ variable "additional_schema_elements" {
   validation {
     condition = alltrue([
       for element in var.additional_schema_elements :
-      contains(["RESOURCES"], element)
+      contains(["RESOURCES", "SPLIT_COST_ALLOCATION_DATA"], element)
     ])
-    error_message = "Valid values for each value of `additional_schema_elements` are `RESOURCES`."
+    error_message = "Valid values for each value of `additional_schema_elements` are `RESOURCES`, `SPLIT_COST_ALLOCATION_DATA`."
   }
 }
 
