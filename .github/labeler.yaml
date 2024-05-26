@@ -1,6 +1,10 @@
 # Modules
 ":floppy_disk: cur-report":
-- modules/cur-report/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/cur-report/**/*
 
 ":floppy_disk: rds-reserved-instance":
-- modules/rds-reserved-instance/**/*
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/rds-reserved-instance/**/*
