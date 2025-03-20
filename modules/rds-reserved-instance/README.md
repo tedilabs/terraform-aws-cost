@@ -4,7 +4,7 @@ This module creates following resources.
 
 - `aws_rds_reserved_instance`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -56,4 +56,4 @@ This module creates following resources.
 | <a name="output_offering"></a> [offering](#output\_offering) | The offering information for the RDS reserved instance.<br>    `id` - The unique identifier for the reservation offering.<br>    `type` - The offering type of this reserved DB instance.<br>    `duration` - The duration of the reservation in seconds.<br>    `product` - The product description of the reserved DB instance.<br>    `instance_type` - The DB instance type(instance class) for the reserved DB instance, for example `db.m5.large`.<br>    `multi_az` - Whether the reservation is for Multi-AZ deployments.<br>    `currency_code` - The currency code for the reserved DB instance.<br>    `fixed_price` - The fixed price charged for this reserved DB instance.<br>    `usage_price` - The hourly price charged for this offering.<br>    `recurring_price` - The recurring price charged to run this reserved DB instance. |
 | <a name="output_started_at"></a> [started\_at](#output\_started\_at) | The time the reservation started. |
 | <a name="output_state"></a> [state](#output\_state) | The state of the reserved DB instance. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->

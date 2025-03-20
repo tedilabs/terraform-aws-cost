@@ -4,7 +4,7 @@ This module creates following resources.
 
 - `aws_cur_report_definition`
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -56,4 +56,4 @@ No modules.
 | <a name="output_name"></a> [name](#output\_name) | The name of the report. |
 | <a name="output_time_granularity"></a> [time\_granularity](#output\_time\_granularity) | The frequency on which report data are measured and displayed |
 | <a name="output_versioning_strategy"></a> [versioning\_strategy](#output\_versioning\_strategy) | Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
