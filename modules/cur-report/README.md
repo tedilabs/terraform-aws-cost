@@ -9,18 +9,20 @@ This module creates following resources.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.43 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.31 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.48.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.31.0 |
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
@@ -33,13 +35,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#input\_delivery\_s3\_bucket) | (Required) The configuration of the S3 bucket where AWS deliver your reports. `delivery_s3_bucket` as defined below.<br>    (Required) `name` - The name of the S3 bucket where AWS deliver the report.<br>    (Optional) `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report. The key prefix can't include spaces.<br>    (Optional) `region` - The region of the S3 bucket where AWS deliver the report. Defaults to current region. | <pre>object({<br>    name       = string<br>    key_prefix = optional(string)<br>    region     = optional(string)<br>  })</pre> | n/a | yes |
+| <a name="input_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#input\_delivery\_s3\_bucket) | (Required) The configuration of the S3 bucket where AWS deliver your reports. `delivery_s3_bucket` as defined below.<br/>    (Required) `name` - The name of the S3 bucket where AWS deliver the report.<br/>    (Optional) `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report. The key prefix can't include spaces.<br/>    (Optional) `region` - The region of the S3 bucket where AWS deliver the report. Defaults to current region. | <pre>object({<br/>    name       = string<br/>    key_prefix = optional(string)<br/>    region     = optional(string)<br/>  })</pre> | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The name of the report that you want to create. The name must be unique, is case sensitive, and can't include spaces. Limited to 256 characters. | `string` | n/a | yes |
 | <a name="input_time_granularity"></a> [time\_granularity](#input\_time\_granularity) | (Required) The frequency on which report data are measured and displayed. Valid values are `HOURLY`, `DAILY`, `MONTHLY`. | `string` | n/a | yes |
 | <a name="input_additional_artifacts"></a> [additional\_artifacts](#input\_additional\_artifacts) | (Optional) A set of additional artifacts. Valid values are `REDSHIFT`, `QUICKSIGHT`, `ATHENA`. When `ATHENA` exists within `additional_artifacts`, no other artifact type can be declared and `versioning_strategy` must be `OVERWRITE_REPORT`. | `set(string)` | `[]` | no |
-| <a name="input_additional_schema_elements"></a> [additional\_schema\_elements](#input\_additional\_schema\_elements) | (Optional) A set of schema elements. Valid values are `RESOURCES`, `SPLIT_COST_ALLOCATION_DATA`. | `set(string)` | `[]` | no |
+| <a name="input_additional_schema_elements"></a> [additional\_schema\_elements](#input\_additional\_schema\_elements) | (Optional) A set of schema elements. Valid values are `MANUAL_DISCOUNT_COMPATIBILITY`, `RESOURCES`, `SPLIT_COST_ALLOCATION_DATA`. | `set(string)` | `[]` | no |
 | <a name="input_compression_format"></a> [compression\_format](#input\_compression\_format) | (Optional) The compression format that AWS uses for the report. Valid values are `ZIP`, `GZIP`, `PARQUET`. | `string` | `"GZIP"` | no |
 | <a name="input_data_refresh_enabled"></a> [data\_refresh\_enabled](#input\_data\_refresh\_enabled) | (Optional) Whether you want Amazon Web Services to update your reports after they have been finalized if Amazon Web Services detects charges related to previous months. These charges can include refunds, credits, or support fees. Defaults to `true`. | `bool` | `true` | no |
+| <a name="input_module_tags_enabled"></a> [module\_tags\_enabled](#input\_module\_tags\_enabled) | (Optional) Whether to create AWS Resource Tags for the module informations. | `bool` | `true` | no |
+| <a name="input_resource_group"></a> [resource\_group](#input\_resource\_group) | (Optional) A configurations of Resource Group for this module. `resource_group` as defined below.<br/>    (Optional) `enabled` - Whether to create Resource Group to find and group AWS resources which are created by this module. Defaults to `true`.<br/>    (Optional) `name` - The name of Resource Group. A Resource Group name can have a maximum of 127 characters, including letters, numbers, hyphens, dots, and underscores. The name cannot start with `AWS` or `aws`. If not provided, a name will be generated using the module name and instance name.<br/>    (Optional) `description` - The description of Resource Group. Defaults to `Managed by Terraform.`. | <pre>object({<br/>    enabled     = optional(bool, true)<br/>    name        = optional(string, "")<br/>    description = optional(string, "Managed by Terraform.")<br/>  })</pre> | `{}` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | (Optional) A map of tags to add to all resources. | `map(string)` | `{}` | no |
 | <a name="input_versioning_strategy"></a> [versioning\_strategy](#input\_versioning\_strategy) | (Optional) Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. Valid values are `CREATE_NEW_REPORT`, `OVERWRITE_REPORT`. Defaults to `OVERWRITE_REPORT`. | `string` | `"OVERWRITE_REPORT"` | no |
 
 ## Outputs
@@ -51,9 +56,10 @@ No modules.
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the report. |
 | <a name="output_compression_format"></a> [compression\_format](#output\_compression\_format) | The compression format that AWS uses for the report. |
 | <a name="output_data_refresh_enabled"></a> [data\_refresh\_enabled](#output\_data\_refresh\_enabled) | Whether you want Amazon Web Services to update your reports after they have been finalized if Amazon Web Services detects charges related to previous months. |
-| <a name="output_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#output\_delivery\_s3\_bucket) | The configuration of the S3 bucekt where AWS deliver the report.<br>    `name` - The name of the S3 bucket where AWS deliver the report.<br>    `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report.<br>    `region` - The region of the S3 bucket where AWS deliver the report. |
+| <a name="output_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#output\_delivery\_s3\_bucket) | The configuration of the S3 bucekt where AWS deliver the report.<br/>    `name` - The name of the S3 bucket where AWS deliver the report.<br/>    `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report.<br/>    `region` - The region of the S3 bucket where AWS deliver the report. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the report. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the report. |
+| <a name="output_resource_group"></a> [resource\_group](#output\_resource\_group) | The resource group created to manage resources in this module. |
 | <a name="output_time_granularity"></a> [time\_granularity](#output\_time\_granularity) | The frequency on which report data are measured and displayed |
 | <a name="output_versioning_strategy"></a> [versioning\_strategy](#output\_versioning\_strategy) | Whether you want Amazon Web Services to overwrite the previous version of each report or to deliver the report in addition to the previous versions. |
 <!-- END_TF_DOCS -->
