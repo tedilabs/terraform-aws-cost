@@ -28,6 +28,8 @@ locals {
 ###################################################
 
 data "aws_rds_reserved_instance_offering" "this" {
+  region = var.region
+
   db_instance_class   = var.offering.instance_class
   duration            = var.offering.duration
   multi_az            = var.offering.multi_az
@@ -36,6 +38,8 @@ data "aws_rds_reserved_instance_offering" "this" {
 }
 
 resource "aws_rds_reserved_instance" "this" {
+  region = var.region
+
   reservation_id = var.name
   offering_id    = data.aws_rds_reserved_instance_offering.this.offering_id
   instance_count = var.instance_count

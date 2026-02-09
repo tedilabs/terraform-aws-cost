@@ -1,3 +1,8 @@
+output "region" {
+  description = "The AWS region this module resources resides in."
+  value       = aws_rds_reserved_instance.this.region
+}
+
 output "id" {
   description = "The unique identifier for the reservation."
   value       = aws_rds_reserved_instance.this.id
