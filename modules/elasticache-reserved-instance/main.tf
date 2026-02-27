@@ -20,6 +20,10 @@ locals {
     "PARTIAL_UPFRONT" = "Partial Upfront"
     "ALL_UPFRONT"     = "All Upfront"
   }
+  durations = {
+    1 = "P1Y"
+    3 = "P3Y"
+  }
 }
 
 
@@ -30,19 +34,18 @@ locals {
 data "aws_elasticache_reserved_cache_node_offering" "this" {
   region = var.region
 
-  db_instance_class   = var.offering.instance_class
-  duration            = var.offering.duration
-  multi_az            = var.offering.multi_az
   offering_type       = local.offering_types[var.offering.type]
+  duration            = local.durations[var.offering.duration]
   product_description = var.offering.product
+  cache_node_type     = var.offering.instance_type
 }
 
 resource "aws_elasticache_reserved_cache_node" "this" {
   region = var.region
 
-  reservation_id = var.name
-  offering_id    = data.aws_elasticache_reserved_cache_node_offering.this.offering_id
-  instance_count = var.instance_count
+  id                               = var.name
+  reserved_cache_nodes_offering_id = data.aws_elasticache_reserved_cache_node_offering.this.offering_id
+  cache_node_count                 = var.instance_count
 
   tags = merge(
     {

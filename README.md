@@ -7,6 +7,7 @@
 Terraform module which creates cost related resources on AWS.
 
 - [cur-report](./modules/cur-report)
+- [elasticache-reserved-instance](./modules/elasticache-reserved-instance)
 - [rds-reserved-instance](./modules/rds-reserved-instance)
 
 
@@ -17,7 +18,7 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
 - **AWS CUR (Cost and Usage Report)**
   - Report
 - **AWS ElastiCache**
-  - Reserved Instance - Comming Soon!
+  - Reserved Instance
 - **AWS RDS (Relational Database Service)**
   - Reserved Instance
 - **AWS Savings Plan**
@@ -57,12 +58,35 @@ module "cur_report" {
 }
 ```
 
+### AWS ElastiCache
+
+```tf
+module "elasticache_reserved_instance" {
+  source  = "tedilabs/cost/aws//modules/elasticache-reserved-instance"
+  version = "~> 0.2.0"
+
+  name           = "example-redis-ri"
+  instance_count = 1
+
+  offering = {
+    type          = "NO_UPFRONT"
+    duration      = 1
+    product       = "redis"
+    instance_type = "cache.t4g.small"
+  }
+}
+```
+
 
 ## Examples
 
 ### AWS CUR (Cost and Usage Report)
 
 - [CUR Report](./examples/cur-report)
+
+### AWS ElastiCache
+
+- [ElastiCache Reserved Instance: Redis for 1 Year with no upfront](./examples/elasticache-ri-redis-1y-no-upfront)
 
 ### AWS RDS (Relational Database Service)
 

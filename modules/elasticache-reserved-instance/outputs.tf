@@ -9,58 +9,53 @@ output "id" {
 }
 
 output "arn" {
-  description = "The ARN for the reserved DB instance."
+  description = "The ARN for the reserved cache node."
   value       = aws_elasticache_reserved_cache_node.this.arn
 }
 
-output "lease_id" {
-  description = "The unique identifier for the lease associated with the reserved DB instance."
-  value       = aws_elasticache_reserved_cache_node.this.lease_id
-}
 output "name" {
   description = "The customer-specified identifier to track this reservation."
-  value       = aws_elasticache_reserved_cache_node.this.reservation_id
+  value       = aws_elasticache_reserved_cache_node.this.id
 }
 
 output "instance_count" {
-  description = "The number of reserved instances."
-  value       = aws_elasticache_reserved_cache_node.this.instance_count
+  description = "The number of reserved cache nodes."
+  value       = aws_elasticache_reserved_cache_node.this.cache_node_count
 }
 
 output "offering" {
   description = <<EOF
-  The offering information for the RDS reserved instance.
+  The offering information for the ElastiCache reserved cache node.
     `id` - The unique identifier for the reservation offering.
-    `type` - The offering type of this reserved DB instance.
-    `duration` - The duration of the reservation in seconds.
-    `product` - The product description of the reserved DB instance.
-    `instance_type` - The DB instance type(instance class) for the reserved DB instance, for example `db.m5.large`.
-    `multi_az` - Whether the reservation is for Multi-AZ deployments.
-    `currency_code` - The currency code for the reserved DB instance.
-    `fixed_price` - The fixed price charged for this reserved DB instance.
+    `type` - The offering type of this reserved cache node.
+    `duration` - The duration of the reservation as an RFC3339 duration.
+    `product` - The engine type for the reserved cache node.
+    `instance_type` - The cache node type for the reserved cache node, for example `cache.t4g.small`.
+    `fixed_price` - The fixed price charged for this reserved cache node.
     `usage_price` - The hourly price charged for this offering.
-    `recurring_price` - The recurring price charged to run this reserved DB instance.
+    `recurring_price` - The recurring price charged to run this reserved cache node.
   EOF
   value = {
-    id = data.aws_elasticache_reserved_cache_node_offering.this.id
+    id = data.aws_elasticache_reserved_cache_node_offering.this.offering_id
     type = {
       for k, v in local.offering_types :
       v => k
-    }[data.aws_elasticache_reserved_cache_node_offering.this.offering_type]
-    duration      = data.aws_elasticache_reserved_cache_node_offering.this.duration
-    product       = data.aws_elasticache_reserved_cache_node_offering.this.product_description
-    instance_type = data.aws_elasticache_reserved_cache_node_offering.this.db_instance_class
-    multi_az      = data.aws_elasticache_reserved_cache_node_offering.this.multi_az
+    }[aws_elasticache_reserved_cache_node.this.offering_type]
+    duration = {
+      for k, v in local.durations :
+      v => k
+    }[aws_elasticache_reserved_cache_node.this.duration]
+    product       = aws_elasticache_reserved_cache_node.this.product_description
+    instance_type = aws_elasticache_reserved_cache_node.this.cache_node_type
 
-    currency_code   = data.aws_elasticache_reserved_cache_node_offering.this.currency_code
-    fixed_price     = data.aws_elasticache_reserved_cache_node_offering.this.fixed_price
+    fixed_price     = aws_elasticache_reserved_cache_node.this.fixed_price
     usage_price     = aws_elasticache_reserved_cache_node.this.usage_price
     recurring_price = aws_elasticache_reserved_cache_node.this.recurring_charges
   }
 }
 
 output "state" {
-  description = "The state of the reserved DB instance."
+  description = "The state of the reserved cache node."
   value       = aws_elasticache_reserved_cache_node.this.state
 }
 
