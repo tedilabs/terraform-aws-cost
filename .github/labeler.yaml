@@ -4,7 +4,17 @@
   - any-glob-to-any-file:
     - modules/cur-report/**/*
 
+":floppy_disk: elasticache-reserved-instance":
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/elasticache-reserved-instance/**/*
+
 ":floppy_disk: rds-reserved-instance":
 - changed-files:
   - any-glob-to-any-file:
     - modules/rds-reserved-instance/**/*
+
+":floppy_disk: savings-plan":
+- changed-files:
+  - any-glob-to-any-file:
+    - modules/savings-plan/**/*
