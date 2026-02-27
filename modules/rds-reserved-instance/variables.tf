@@ -28,7 +28,7 @@ variable "instance_count" {
 variable "offering" {
   description = <<EOF
   (Required) The configuration for offering of the reservation. `offering` as defined below.
-    (Required) `type` - The offering type of this reserved DB instance.
+    (Required) `type` - The offering type of this reserved DB instance. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.
     (Required) `duration` - The duration of the reservation in years or seconds. Valid values are `1`, `3`, `31536000`, `94608000`.
     (Required) `product` - The product description of the reserved DB instance.
     (Required) `instance_class` - The DB instance type(instance class) for the reserved DB instance, for example `db.m5.large`. Not all DB instance classes are available in all AWS Regions, or for all database engines.
