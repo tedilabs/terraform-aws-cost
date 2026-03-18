@@ -9,6 +9,7 @@ Terraform module which creates cost related resources on AWS.
 - [cur-report](./modules/cur-report)
 - [elasticache-reserved-instance](./modules/elasticache-reserved-instance)
 - [rds-reserved-instance](./modules/rds-reserved-instance)
+- [savings-plan](./modules/savings-plan)
 
 
 ## Target AWS Services
@@ -22,7 +23,7 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
 - **AWS RDS (Relational Database Service)**
   - Reserved Instance
 - **AWS Savings Plan**
-  - Comming Soon!
+  - Savings Plan
 
 
 ## Usage
