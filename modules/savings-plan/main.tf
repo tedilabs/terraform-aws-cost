@@ -75,13 +75,27 @@ data "aws_savingsplans_offerings" "this" {
   }
 }
 
+locals {
+  offering_data = data.aws_savingsplans_offerings.this[0].offerings[0]
+  offering = {
+    id   = local.offering_data.offering_id
+    plan = local.offering_data.plan_type
+    type = {
+      for k, v in local.offering_types :
+      v => k
+    }[local.offering_data.payment_option]
+    duration = local.offering_data.duration_seconds
+  }
+}
+
 resource "aws_savingsplans_savings_plan" "this" {
-  savings_plan_offering_id = (var.offering.id != null
-    ? var.offering.id
-    : data.aws_savingsplans_offerings.this[0].offerings[0].offering_id
-  )
-  commitment             = format("%.8f", var.commitment)
-  upfront_payment_amount = format("%.8f", var.upfront_payment_amount)
+  savings_plan_offering_id = local.offering.id
+  commitment               = format("%.8f", var.commitment)
+  upfront_payment_amount   = format("%.8f", var.upfront_payment_amount)
+  # upfront_payment_amount = (local.offering.type != "NO_UPFRONT"
+  #   ? format("%.8f", var.upfront_payment_amount)
+  #   : null
+  # )
 
   purchase_time = var.purchase_at
 

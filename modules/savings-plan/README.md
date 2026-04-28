@@ -8,33 +8,33 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.38 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 6.38.0 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_savingsplans_savings_plan.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/savingsplans_savings_plan) | resource |
 | [aws_savingsplans_offerings.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/savingsplans_offerings) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_commitment"></a> [commitment](#input\_commitment) | (Required) The hourly commitment, in USD. This is the amount you commit to pay per hour, regardless of actual usage. | `number` | n/a | yes |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The customer-specified identifier to track this savings plan. Only used for `Name` resource tag. | `string` | n/a | yes |
 | <a name="input_offering"></a> [offering](#input\_offering) | (Required) The configuration for offering of the savings plan. `offering` as defined below.<br/>    (Optional) `id` - The unique identifier for the savings plan offering. If specified, the other parameters in `offering` will be ignored and the offering with this ID will be used for purchasing the savings plan.<br/>    (Optional) `plan` - A plan type of the savings plan. Valid values are `Compute`, `EC2Instance`, `SageMaker`, `Database`.<br/>    (Optional) `type` - The offering type of this savings plan. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.<br/>    (Optional) `duration` - The duration of the reservation in seconds. Valid values are `31536000`, `94608000`.<br/>      (Optional) `region` - The region of the savings plan. Only required for `EC2Instance` savings plans. | <pre>object({<br/>    id       = optional(string)<br/>    plan     = optional(string)<br/>    type     = optional(string)<br/>    duration = optional(number)<br/>    region   = optional(string)<br/>  })</pre> | n/a | yes |
@@ -47,7 +47,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the Savings Plan. |
 | <a name="output_commitment"></a> [commitment](#output\_commitment) | The hourly commitment, in USD. This is the amount you commit to pay per hour, regardless of actual usage. |
 | <a name="output_end_at"></a> [end\_at](#output\_end\_at) | The end time of the Savings Plan. |
