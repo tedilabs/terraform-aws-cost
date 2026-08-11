@@ -33,7 +33,7 @@ Terraform Modules from [this package](https://github.com/tedilabs/terraform-aws-
 ```tf
 module "cur_report" {
   source  = "tedilabs/cost/aws//modules/cur-report"
-  version = "~> 0.1.0"
+  version = "~> 0.2.0"
 
   name        = "example-report"
 
