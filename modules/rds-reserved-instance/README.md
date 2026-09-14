@@ -8,33 +8,33 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.31 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.31.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.31 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_rds_reserved_instance.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_reserved_instance) | resource |
 | [aws_rds_reserved_instance_offering.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/rds_reserved_instance_offering) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The customer-specified identifier to track this reservation. | `string` | n/a | yes |
 | <a name="input_offering"></a> [offering](#input\_offering) | (Required) The configuration for offering of the reservation. `offering` as defined below.<br/>    (Required) `type` - The offering type of this reserved DB instance. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.<br/>    (Required) `duration` - The duration of the reservation in years or seconds. Valid values are `1`, `3`, `31536000`, `94608000`.<br/>    (Required) `product` - The product description of the reserved DB instance.<br/>    (Required) `instance_class` - The DB instance type(instance class) for the reserved DB instance, for example `db.m5.large`. Not all DB instance classes are available in all AWS Regions, or for all database engines.<br/>    (Required) `multi_az` - Whether the reservation is for Multi-AZ deployments. | <pre>object({<br/>    type           = string<br/>    duration       = number<br/>    product        = string<br/>    instance_class = string<br/>    multi_az       = bool<br/>  })</pre> | n/a | yes |
 | <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | (Optional) The number of instances to reserve. Defaults to `1`. | `number` | `1` | no |
@@ -46,7 +46,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN for the reserved DB instance. |
 | <a name="output_id"></a> [id](#output\_id) | The unique identifier for the reservation. |
 | <a name="output_instance_count"></a> [instance\_count](#output\_instance\_count) | The number of reserved instances. |

@@ -8,33 +8,33 @@ This module creates following resources.
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.12 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 6.31 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.31.0 |
+| ---- | ------- |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 6.31 |
 
 ## Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_resource_group"></a> [resource\_group](#module\_resource\_group) | tedilabs/misc/aws//modules/resource-group | ~> 0.12.0 |
 
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [aws_elasticache_reserved_cache_node.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/elasticache_reserved_cache_node) | resource |
 | [aws_elasticache_reserved_cache_node_offering.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/elasticache_reserved_cache_node_offering) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_name"></a> [name](#input\_name) | (Required) The customer-specified identifier to track this reservation. | `string` | n/a | yes |
 | <a name="input_offering"></a> [offering](#input\_offering) | (Required) The configuration for offering of the reservation. `offering` as defined below.<br/>    (Required) `type` - The offering type of this reserved cache node. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.<br/>    (Required) `duration` - The duration of the reservation in years or seconds. Valid values are `1`, `3`.<br/>    (Required) `product` - The engine type for the reserved cache node. Valid values are `redis`, `valkey`, `memcached`.<br/>    (Required) `instance_type` - The cache node type for the reserved cache node, for example `cache.t4g.small`. Not all cache node types are available in all AWS Regions. | <pre>object({<br/>    type          = string<br/>    duration      = number<br/>    product       = string<br/>    instance_type = string<br/>  })</pre> | n/a | yes |
 | <a name="input_instance_count"></a> [instance\_count](#input\_instance\_count) | (Optional) The number of cache instances to reserve. Defaults to `1`. | `number` | `1` | no |
@@ -46,7 +46,7 @@ This module creates following resources.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN for the reserved cache node. |
 | <a name="output_id"></a> [id](#output\_id) | The unique identifier for the reservation. |
 | <a name="output_instance_count"></a> [instance\_count](#output\_instance\_count) | The number of reserved cache nodes. |
