@@ -16,16 +16,19 @@ variable "commitment" {
 }
 
 variable "upfront_payment_amount" {
-  description = "(Optional) The up-front payment amount. This is a whole number between 50 and 99 percent of the total value of the Savings Plan. This parameter is only supported if the payment option is `PARTIAL_UPFRONT`."
+  description = "(Optional) The up-front payment amount. Defaults to `null`, omitting the purchase argument. Use `null` for No Upfront purchases or to preserve AWS-computed amounts during import. For Partial Upfront, supply a whole number between 50 and 99 percent of the total value. Explicit amounts retain eight decimal places."
   type        = number
-  default     = 0
-  nullable    = false
+  default     = null
+  nullable    = true
 
   validation {
-    condition = alltrue([
-      var.upfront_payment_amount >= 0,
-      var.upfront_payment_amount <= (var.commitment * 94608000 / (60 * 60)),
-    ])
+    condition = (var.upfront_payment_amount != null
+      ? alltrue([
+        var.upfront_payment_amount >= 0,
+        var.upfront_payment_amount <= (var.commitment * 94608000 / (60 * 60)),
+      ])
+      : true
+    )
     error_message = "Valid value for `upfront_payment_amount` is a number between 0 and the total value of the Savings Plan."
   }
 }
