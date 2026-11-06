@@ -109,6 +109,37 @@ resource "aws_savingsplans_savings_plan" "this" {
 
   purchase_time = var.purchase_at
 
+  lifecycle {
+    precondition {
+      condition = (var.upfront_payment_amount == null || local.offering.duration == null
+        ? true
+        : var.upfront_payment_amount <= (var.commitment * local.offering.duration / (60 * 60))
+      )
+      error_message = "The upfront payment amount must not exceed the commitment over the selected offering's actual duration."
+    }
+    precondition {
+      condition = (local.offering.type == "PARTIAL_UPFRONT"
+        ? (var.upfront_payment_amount != null
+          ? alltrue([
+            floor(var.upfront_payment_amount) == var.upfront_payment_amount,
+            var.upfront_payment_amount >= (var.commitment * local.offering.duration / (60 * 60) * 0.50),
+            var.upfront_payment_amount <= (var.commitment * local.offering.duration / (60 * 60) * 0.99),
+          ])
+          : false
+        )
+        : true
+      )
+      error_message = "Partial Upfront offerings require a whole-number upfront payment between 50 and 99 percent of the total commitment."
+    }
+    precondition {
+      condition = (local.offering.type == "NO_UPFRONT"
+        ? var.upfront_payment_amount == null
+        : true
+      )
+      error_message = "No Upfront offerings require upfront_payment_amount to be omitted (null), including instead of zero."
+    }
+  }
+
   tags = merge(
     {
       "Name" = local.metadata.name
