@@ -102,11 +102,10 @@ locals {
 resource "aws_savingsplans_savings_plan" "this" {
   savings_plan_offering_id = local.offering.id
   commitment               = format("%.8f", var.commitment)
-  upfront_payment_amount   = format("%.8f", var.upfront_payment_amount)
-  # upfront_payment_amount = (local.offering.type != "NO_UPFRONT"
-  #   ? format("%.8f", var.upfront_payment_amount)
-  #   : null
-  # )
+  upfront_payment_amount = (var.upfront_payment_amount != null
+    ? format("%.8f", var.upfront_payment_amount)
+    : null
+  )
 
   purchase_time = var.purchase_at
 
