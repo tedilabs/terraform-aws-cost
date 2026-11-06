@@ -76,21 +76,27 @@ data "aws_savingsplans_offerings" "this" {
 }
 
 locals {
-  offering_data = var.offering.id != null ? null : data.aws_savingsplans_offerings.this[0].offerings[0]
-  offering = var.offering.id != null ? {
-    id       = var.offering.id
-    plan     = null
-    type     = null
-    duration = null
-    } : {
-    id   = local.offering_data.offering_id
-    plan = local.offering_data.plan_type
-    type = {
-      for k, v in local.offering_types :
-      v => k
-    }[local.offering_data.payment_option]
-    duration = local.offering_data.duration_seconds
-  }
+  offering_data = (var.offering.id != null
+    ? null
+    : data.aws_savingsplans_offerings.this[0].offerings[0]
+  )
+  offering = (var.offering.id != null
+    ? {
+      id       = var.offering.id
+      plan     = null
+      type     = null
+      duration = null
+    }
+    : {
+      id   = local.offering_data.offering_id
+      plan = local.offering_data.plan_type
+      type = {
+        for k, v in local.offering_types :
+        v => k
+      }[local.offering_data.payment_option]
+      duration = local.offering_data.duration_seconds
+    }
+  )
 }
 
 resource "aws_savingsplans_savings_plan" "this" {
