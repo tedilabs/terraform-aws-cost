@@ -31,7 +31,7 @@ output "recurring_payment_amount" {
 output "offering" {
   description = <<EOF
   The offering information for the Savings Plan.
-    `id` - The unique identifier for the Savgins Plan.
+    `id` - The unique identifier for the Savings Plan.
     `plan` - The plan type of the Savings Plan.
     `type` - The offering type of this Savings Plan.
     `description` - The description of the Savings Plan.

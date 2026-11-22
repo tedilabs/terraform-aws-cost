@@ -58,7 +58,7 @@ This module creates following resources.
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the report. |
 | <a name="output_compression_format"></a> [compression\_format](#output\_compression\_format) | The compression format that AWS uses for the report. |
 | <a name="output_data_refresh_enabled"></a> [data\_refresh\_enabled](#output\_data\_refresh\_enabled) | Whether you want Amazon Web Services to update your reports after they have been finalized if Amazon Web Services detects charges related to previous months. |
-| <a name="output_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#output\_delivery\_s3\_bucket) | The configuration of the S3 bucekt where AWS deliver the report.<br/>    `name` - The name of the S3 bucket where AWS deliver the report.<br/>    `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report.<br/>    `region` - The region of the S3 bucket where AWS deliver the report. |
+| <a name="output_delivery_s3_bucket"></a> [delivery\_s3\_bucket](#output\_delivery\_s3\_bucket) | The configuration of the S3 bucket where AWS deliver the report.<br/>    `name` - The name of the S3 bucket where AWS deliver the report.<br/>    `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report.<br/>    `region` - The region of the S3 bucket where AWS deliver the report. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the report. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the report. |
 | <a name="output_resource_group"></a> [resource\_group](#output\_resource\_group) | The resource group created to manage resources in this module. |

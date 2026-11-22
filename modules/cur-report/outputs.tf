@@ -30,7 +30,7 @@ output "data_refresh_enabled" {
 
 output "delivery_s3_bucket" {
   description = <<EOF
-  The configuration of the S3 bucekt where AWS deliver the report.
+  The configuration of the S3 bucket where AWS deliver the report.
     `name` - The name of the S3 bucket where AWS deliver the report.
     `key_prefix` - The key prefix that AWS adds to the report name when AWS delivers the report.
     `region` - The region of the S3 bucket where AWS deliver the report.
