@@ -30,31 +30,17 @@ locals {
 data "aws_savingsplans_offerings" "this" {
   count = var.offering.id != null ? 0 : 1
 
-  offering_ids = (var.offering.id != null
-    ? [var.offering.id]
+  plan_types = (var.offering.plan != null
+    ? [var.offering.plan]
     : null
   )
-
-  plan_types = (var.offering.id != null
-    ? null
-    : (var.offering.plan != null
-      ? [var.offering.plan]
-      : null
-    )
+  payment_options = (var.offering.type != null
+    ? [local.offering_types[var.offering.type]]
+    : null
   )
-  payment_options = (var.offering.id != null
-    ? null
-    : (var.offering.type != null
-      ? [local.offering_types[var.offering.type]]
-      : null
-    )
-  )
-  durations = (var.offering.id != null
-    ? null
-    : (var.offering.duration != null
-      ? [var.offering.duration]
-      : null
-    )
+  durations = (var.offering.duration != null
+    ? [var.offering.duration]
+    : null
   )
 
   ## Region (EC2Instance Savings Plans only)
