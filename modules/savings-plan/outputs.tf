@@ -101,3 +101,18 @@ output "resource_group" {
     )
   )
 }
+
+# output "debug" {
+#   value = {
+#     for k, v in aws_savingsplans_savings_plan.this :
+#     k => v
+#     if !contains(["tags", "tags_all", "offering_id", "payment_option", "currency", "state", "start", "end", "savings_plan_id", "savings_plan_arn", "purchase_time", "region", "commitment", "upfront_payment_amount", "timeouts", "savings_plan_offering_id", "returnable_until", "recurring_payment_amount", "description", "savings_plan_type", "product_types", "term_duration_in_seconds", "ec2_instance_family"], k)
+#   }
+# }
+
+# output "debug2" {
+#   value = {
+#     for k, v in data.aws_savingsplans_offerings.this :
+#     k => v
+#   }
+# }
