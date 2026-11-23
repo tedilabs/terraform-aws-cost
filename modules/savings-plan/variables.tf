@@ -48,8 +48,8 @@ variable "offering" {
     (Optional) `id` - The unique identifier for the savings plan offering. If specified, the other parameters in `offering` will be ignored and the offering with this ID will be used for purchasing the savings plan.
     (Optional) `plan` - A plan type of the savings plan. Valid values are `Compute`, `EC2Instance`, `SageMaker`, `Database`.
     (Optional) `type` - The offering type of this savings plan. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.
-    (Optional) `duration` - The duration of the reservation in seconds. Valid values are `31536000`, `94608000`.
-      (Optional) `region` - The region of the savings plan. Only required for `EC2Instance` savings plans.
+    (Optional) `duration` - The duration of the savings plan in seconds. Valid values are `31536000`, `94608000`.
+    (Optional) `region` - The region of the savings plan. Only required for `EC2Instance` savings plans.
   EOF
   type = object({
     id       = optional(string)

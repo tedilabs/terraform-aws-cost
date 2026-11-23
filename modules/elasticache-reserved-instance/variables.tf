@@ -29,7 +29,7 @@ variable "offering" {
   description = <<EOF
   (Required) The configuration for offering of the reservation. `offering` as defined below.
     (Required) `type` - The offering type of this reserved cache node. Valid values are `NO_UPFRONT`, `PARTIAL_UPFRONT`, `ALL_UPFRONT`.
-    (Required) `duration` - The duration of the reservation in years or seconds. Valid values are `1`, `3`.
+    (Required) `duration` - The duration of the reservation in years. Valid values are `1`, `3`.
     (Required) `product` - The engine type for the reserved cache node. Valid values are `redis`, `valkey`, `memcached`.
     (Required) `instance_type` - The cache node type for the reserved cache node, for example `cache.t4g.small`. Not all cache node types are available in all AWS Regions.
   EOF
