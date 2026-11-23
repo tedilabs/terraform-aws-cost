@@ -89,6 +89,18 @@ variable "additional_artifacts" {
     ])
     error_message = "Valid values for each value of `additional_artifacts` are `REDSHIFT`, `QUICKSIGHT`, `ATHENA`."
   }
+
+  validation {
+    condition = (contains(var.additional_artifacts, "ATHENA")
+      ? alltrue([
+        length(var.additional_artifacts) == 1,
+        var.versioning_strategy == "OVERWRITE_REPORT",
+        var.compression_format == "PARQUET",
+      ])
+      : true
+    )
+    error_message = "When `ATHENA` exists within `additional_artifacts`, no other artifact type can be declared, `versioning_strategy` must be `OVERWRITE_REPORT`, and `compression_format` must be `PARQUET`."
+  }
 }
 
 variable "tags" {
