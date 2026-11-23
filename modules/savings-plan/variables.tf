@@ -72,6 +72,10 @@ variable "offering" {
     condition     = var.offering.duration == null || contains([31536000, 94608000], var.offering.duration)
     error_message = "Valid values for `offering.duration` are `31536000`, `94608000`."
   }
+  validation {
+    condition     = var.offering.id != null || var.offering.plan != "EC2Instance" || var.offering.region != null
+    error_message = "`offering.region` is required for `EC2Instance` savings plans when `offering.id` is not specified."
+  }
 }
 
 variable "tags" {
